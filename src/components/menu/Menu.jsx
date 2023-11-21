@@ -9,16 +9,18 @@ const Menu = () => {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [orderedItems, setOrderedItems] = useState([]); // new state for ordered items
 
   useEffect(() => {
     if (selectedCategory) {
       const menuItems = [];
       for (const item in data[selectedCategory]) {
+        const existingItem = orderedItems.find((i) => i.name === item);
         menuItems.push({
           name: item,
           price: data[selectedCategory][item],
-          count: 0,
-          order: 0,
+          count: existingItem ? existingItem.count : 0,
+          order: existingItem ? existingItem.order : 0,
         });
       }
       setItems(menuItems);
@@ -33,6 +35,7 @@ const Menu = () => {
       setOrder(order + 1);
     }
     setItems(newItems);
+    setOrderedItems([...orderedItems, newItems[index]]); // add the item to the ordered items
   };
 
   const decrementCount = (index) => {
@@ -88,7 +91,7 @@ const Menu = () => {
         <br />
         <div className="wrap__bill">
           <div className="order">
-            {items
+            {orderedItems
               .filter((item) => item.count > 0)
               .sort((a, b) => a.order - b.order)
               .map((item, index) => (
