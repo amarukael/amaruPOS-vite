@@ -9,6 +9,7 @@ const Menu = () => {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [billItems, setBillItems] = useState([]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -33,6 +34,14 @@ const Menu = () => {
       setOrder(order + 1);
     }
     setItems(newItems);
+    const newBillItems = [...billItems];
+    const existingItemIndex = newBillItems.findIndex(item => item.name === newItems[index].name);
+    if (existingItemIndex > -1) {
+      newBillItems[existingItemIndex].count++;
+    } else {
+      newBillItems.push(newItems[index]);
+    }
+    setBillItems(newBillItems);
   };
 
   const decrementCount = (index) => {
@@ -41,6 +50,15 @@ const Menu = () => {
       newItems[index].count--;
     }
     setItems(newItems);
+    const newBillItems = [...billItems];
+    const existingItemIndex = newBillItems.findIndex(item => item.name === newItems[index].name);
+    if (existingItemIndex > -1) {
+      newBillItems[existingItemIndex].count--;
+      if (newBillItems[existingItemIndex].count === 0) {
+        newBillItems.splice(existingItemIndex, 1);
+      }
+    }
+    setBillItems(newBillItems);
   };
 
   return (
@@ -88,8 +106,7 @@ const Menu = () => {
         <br />
         <div className="wrap__bill">
           <div className="order">
-            {items
-              .filter((item) => item.count > 0)
+            {billItems
               .sort((a, b) => a.order - b.order)
               .map((item, index) => (
                 <ItemBill
