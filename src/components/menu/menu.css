@@ -112,13 +112,17 @@
 
 .wrap__bill .order{
   overflow: auto;
+  height: 45%;
+  -ms-overflow-style: none;
+}
+
+.wrap__bill .order::-webkit-scrollbar{
+  display: none;
 }
 
 .wrap__bill .payment {
   border-radius: 5% 5% 0 0;
-  height: 50%;
-  padding-top: 10%;
-  margin: 0px 10px;
+  height: 55%;
+  margin: 10px 10px;
   background-color: rgb(61, 61, 61);
-  background-clip: padding-box;
 }
