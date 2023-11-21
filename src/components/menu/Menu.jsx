@@ -3,7 +3,7 @@ import "./menu.css";
 import { FaCoffee } from "react-icons/fa";
 import Items from "./Item";
 import ItemBill from "./ItemBill";
-import data from "../../assets/data.json"; // import your data
+import data from "../../assets/data.json";
 
 const Menu = () => {
   const [items, setItems] = useState([]);
