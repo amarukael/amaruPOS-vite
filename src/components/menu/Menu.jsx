@@ -15,16 +15,19 @@ const Menu = () => {
     if (selectedCategory) {
       const menuItems = [];
       for (const item in data[selectedCategory]) {
+        const existingItem = billItems.find(
+          (billItem) => billItem.name === item
+        );
         menuItems.push({
           name: item,
-          price: data[selectedCategory][item],
-          count: 0,
-          order: 0,
+          price: Number(data[selectedCategory][item].replace(/[^0-9]+/g, "")),
+          count: existingItem ? existingItem.count : 0,
+          order: existingItem ? existingItem.order : 0,
         });
       }
       setItems(menuItems);
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, billItems]);
 
   const incrementCount = (index) => {
     const newItems = [...items];
@@ -35,7 +38,9 @@ const Menu = () => {
     }
     setItems(newItems);
     const newBillItems = [...billItems];
-    const existingItemIndex = newBillItems.findIndex(item => item.name === newItems[index].name);
+    const existingItemIndex = newBillItems.findIndex(
+      (item) => item.name === newItems[index].name
+    );
     if (existingItemIndex > -1) {
       newBillItems[existingItemIndex].count++;
     } else {
@@ -51,7 +56,9 @@ const Menu = () => {
     }
     setItems(newItems);
     const newBillItems = [...billItems];
-    const existingItemIndex = newBillItems.findIndex(item => item.name === newItems[index].name);
+    const existingItemIndex = newBillItems.findIndex(
+      (item) => item.name === newItems[index].name
+    );
     if (existingItemIndex > -1) {
       newBillItems[existingItemIndex].count--;
       if (newBillItems[existingItemIndex].count === 0) {
@@ -59,6 +66,17 @@ const Menu = () => {
       }
     }
     setBillItems(newBillItems);
+  };
+
+  const calculateTotal = () => {
+    return billItems.reduce(
+      (total, item) => total + item.price * item.count,
+      0
+    );
+  };
+
+  const calculateTax = (total) => {
+    return total * 0.1;
   };
 
   return (
@@ -117,7 +135,28 @@ const Menu = () => {
                 />
               ))}
           </div>
-          <div className="payment"></div>
+          <div className="payment">
+            <p>
+              Total:{" "}
+              {calculateTotal().toLocaleString("id-ID", {
+                style: "currency",
+                currency: "IDR",
+              })}
+            </p>
+            <p>
+              Tax (10%):{" "}
+              {calculateTax(calculateTotal()).toLocaleString("id-ID", {
+                style: "currency",
+                currency: "IDR",
+              })}
+            </p>
+            <p>
+              Grand Total:{" "}
+              {(
+                calculateTotal() + calculateTax(calculateTotal())
+              ).toLocaleString("id-ID", { style: "currency", currency: "IDR" })}
+            </p>
+          </div>
         </div>
       </div>
     </>

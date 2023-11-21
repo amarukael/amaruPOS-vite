@@ -8,7 +8,7 @@ const Items = ({ nameItem, priceItem, count, incrementCount, decrementCount }) =
       <div className="item__content">
         <div>
           <h3>{nameItem}</h3>
-          <span>{priceItem}</span>
+          <span>{priceItem.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</span>
         </div>
         <div className="counter">
             <i onClick={decrementCount}>

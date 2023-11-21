@@ -8,7 +8,7 @@ const ItemBill = ({ nameItem, priceItem, count }) => {
         <div className="total">{count}</div>
         <div className="name">{nameItem}</div>
       </div>
-      <div>{priceItem}</div>
+      <div>{priceItem.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</div>
     </div>
   );
 };
