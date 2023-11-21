@@ -1,0 +1,33 @@
+.navside{
+    height: 100vh;
+    width: 35%;
+}
+
+.navside .nav{
+    padding: 0px 20px;
+}
+
+.navside h2{
+    margin: 20px 0;
+    color: white;
+    padding: 0px 10px;
+}
+
+.navside li{
+    color: rgb(235, 235, 235);
+    padding: 15px 10px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.navside li:hover{
+    color: white;
+    background-color: rgb(61, 61, 61);
+    border-radius: 10px;
+}
+
+.navside .active{
+    color: white;
+    background-color: rgb(61, 61, 61);
+    border-radius: 10px;
+}

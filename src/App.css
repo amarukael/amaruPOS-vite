@@ -1,0 +1,15 @@
+body{
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
+}
+
+.allcontent{
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* Tinggi penuh viewport */
+  width: 100vw; /* Lebar penuh viewport */
+  overflow: hidden; /* Mencegah pengguliran */
+}

@@ -1,0 +1,124 @@
+.menu {
+  width: 100%;
+}
+
+.menu .searchbar {
+  padding: 5px 30px;
+  margin: 25px 5px;
+  margin-bottom: 15px !important;
+  width: 250px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+}
+
+.menu .menu__category {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+}
+
+.menu__category .category__item {
+  color: black;
+  background-color: rgb(201, 201, 201);
+  width: 140px;
+  height: 130px;
+  border-radius: 10%;
+  margin: 5px;
+  padding: 15px;
+}
+
+.category__item .item__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.category__item .category__icon {
+  font-size: 25px;
+}
+
+.menu .line {
+  border-color: rgb(150, 150, 150);
+  margin: 20px 0px;
+}
+
+.menu .menu__items {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  height: 55%;
+  overflow: auto;
+}
+
+.menu__items .items__item {
+  background-color: rgb(90, 90, 90);
+  width: 140px;
+  height: 130px;
+  border-radius: 10%;
+  margin: 5px;
+  padding: 15px;
+}
+
+.items__item .item__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.item__content .counter {
+  font-size: 15px;
+  align-self: flex-end;
+}
+
+.counter span {
+  margin: 0px 10px;
+}
+
+.counter i {
+  border: 2px grey solid;
+  border-radius: 15%;
+  align-content: center;
+  padding: 3px 5px;
+}
+
+.counter i:hover {
+  border: 2px grey solid;
+  border-radius: 15%;
+  background-color: grey;
+  color: black;
+  cursor: pointer;
+}
+
+.bill__menu {
+  height: 100%;
+  width: 40%;
+}
+.bill__menu .wrap__bill {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.wrap__bill .order{
+  overflow: auto;
+}
+
+.wrap__bill .payment {
+  border-radius: 5% 5% 0 0;
+  height: 50%;
+  padding-top: 10%;
+  margin: 0px 10px;
+  background-color: rgb(61, 61, 61);
+  background-clip: padding-box;
+}
