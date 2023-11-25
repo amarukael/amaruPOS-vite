@@ -31,6 +31,30 @@
         "Keripik Tempe": "Rp 15.000",
         "Keripik Tahu": "Rp 15.000",
         "Keripik Apel": "Rp 20.000"
+    },
+    "Snack2": {
+        "Pisang Goreng": "Rp 10.000",
+        "Singkong Goreng": "Rp 10.000",
+        "Tempe Goreng": "Rp 10.000",
+        "Tahu Goreng": "Rp 10.000",
+        "Keripik Kentang": "Rp 15.000",
+        "Keripik Singkong": "Rp 15.000",
+        "Keripik Pisang": "Rp 15.000",
+        "Keripik Tempe": "Rp 15.000",
+        "Keripik Tahu": "Rp 15.000",
+        "Keripik Apel": "Rp 20.000"
+    },
+    "Snack3": {
+        "Pisang Goreng": "Rp 10.000",
+        "Singkong Goreng": "Rp 10.000",
+        "Tempe Goreng": "Rp 10.000",
+        "Tahu Goreng": "Rp 10.000",
+        "Keripik Kentang": "Rp 15.000",
+        "Keripik Singkong": "Rp 15.000",
+        "Keripik Pisang": "Rp 15.000",
+        "Keripik Tempe": "Rp 15.000",
+        "Keripik Tahu": "Rp 15.000",
+        "Keripik Apel": "Rp 20.000"
     }
     
 }

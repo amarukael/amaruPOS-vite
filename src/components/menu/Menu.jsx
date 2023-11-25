@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./menu.css";
 import { FaCoffee } from "react-icons/fa";
 import Items from "./Item";
 import ItemBill from "./ItemBill";
 import data from "../../assets/data.json";
+import GeneratePDF from './GeneratePDF';
 
 const Menu = () => {
   const [items, setItems] = useState([]);
@@ -23,6 +24,7 @@ const Menu = () => {
           price: Number(data[selectedCategory][item].replace(/[^0-9]+/g, "")),
           count: existingItem ? existingItem.count : 0,
           order: existingItem ? existingItem.order : 0,
+          timestamp: existingItem ? existingItem.timestamp : 0, // add timestamp
         });
       }
       setItems(menuItems);
@@ -36,6 +38,7 @@ const Menu = () => {
       newItems[index].order = order;
       setOrder(order + 1);
     }
+    newItems[index].timestamp = Date.now(); // update timestamp
     setItems(newItems);
     const newBillItems = [...billItems];
     const existingItemIndex = newBillItems.findIndex(
@@ -43,6 +46,7 @@ const Menu = () => {
     );
     if (existingItemIndex > -1) {
       newBillItems[existingItemIndex].count++;
+      newBillItems[existingItemIndex].timestamp = Date.now(); // update timestamp
     } else {
       newBillItems.push(newItems[index]);
     }
@@ -54,6 +58,7 @@ const Menu = () => {
     if (newItems[index].count > 0) {
       newItems[index].count--;
     }
+    newItems[index].timestamp = Date.now(); // update timestamp
     setItems(newItems);
     const newBillItems = [...billItems];
     const existingItemIndex = newBillItems.findIndex(
@@ -61,6 +66,7 @@ const Menu = () => {
     );
     if (existingItemIndex > -1) {
       newBillItems[existingItemIndex].count--;
+      newBillItems[existingItemIndex].timestamp = Date.now(); // update timestamp
       if (newBillItems[existingItemIndex].count === 0) {
         newBillItems.splice(existingItemIndex, 1);
       }
@@ -125,7 +131,7 @@ const Menu = () => {
         <div className="wrap__bill">
           <div className="order">
             {billItems
-              .sort((a, b) => a.order - b.order)
+              .sort((a, b) => b.timestamp - a.timestamp)
               .map((item, index) => (
                 <ItemBill
                   key={index}
@@ -135,27 +141,46 @@ const Menu = () => {
                 />
               ))}
           </div>
-          <div className="payment">
-            <p>
-              Total:{" "}
-              {calculateTotal().toLocaleString("id-ID", {
-                style: "currency",
-                currency: "IDR",
-              })}
-            </p>
-            <p>
-              Tax (10%):{" "}
-              {calculateTax(calculateTotal()).toLocaleString("id-ID", {
-                style: "currency",
-                currency: "IDR",
-              })}
-            </p>
-            <p>
-              Grand Total:{" "}
-              {(
-                calculateTotal() + calculateTax(calculateTotal())
-              ).toLocaleString("id-ID", { style: "currency", currency: "IDR" })}
-            </p>
+          <div className="totalbill">
+            <div className="calculate">
+              <div className="subtotal">
+                <p>Subtotal:</p>
+                <p>
+                  {calculateTotal().toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
+              </div>
+              <div className="subtotal">
+                <p>Tax (10%):</p>
+                <p>
+                  {calculateTax(calculateTotal()).toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
+              </div>
+              <div class="dashed-line"></div>
+              <div className="subtotal">
+                <h3>Total:</h3>
+                <h3>
+                  {(
+                    calculateTotal() + calculateTax(calculateTotal())
+                  ).toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </h3>
+              </div>
+            </div>
+            <div>
+              <GeneratePDF
+                billItems={billItems}
+                calculateTotal={calculateTotal}
+                calculateTax={calculateTax}
+              />
+            </div>
           </div>
         </div>
       </div>

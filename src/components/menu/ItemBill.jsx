@@ -1,5 +1,4 @@
-import "./itembill.css";
-import React, { useState } from "react";
+import React from "react";
 
 const ItemBill = ({ nameItem, priceItem, count }) => {
   return (

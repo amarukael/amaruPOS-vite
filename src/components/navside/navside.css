@@ -1,21 +1,21 @@
 .navside{
     height: 100vh;
-    width: 35%;
+    width: 28rem;
 }
 
 .navside .nav{
-    padding: 0px 20px;
+    padding: 0px 2rem;
 }
 
 .navside h2{
-    margin: 20px 0;
+    margin: 2rem 0;
     color: white;
-    padding: 0px 10px;
+    padding: 0px 1rem;
 }
 
 .navside li{
     color: rgb(235, 235, 235);
-    padding: 15px 10px;
+    padding: 1rem 1rem;
     list-style: none;
     cursor: pointer;
 }
@@ -23,11 +23,31 @@
 .navside li:hover{
     color: white;
     background-color: rgb(61, 61, 61);
-    border-radius: 10px;
+    border-radius: 1rem;
 }
 
 .navside .active{
     color: white;
     background-color: rgb(61, 61, 61);
-    border-radius: 10px;
+    border-radius: 1rem;
+}
+
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+    .navside{
+        width: 10rem;
+    }
+
+    .navside .nav{
+        padding: 0px 0.5rem;
+    }
+
+    .navside h2{
+        margin: 1rem 0; 
+    }
+
+    .navside li{
+        font-size: 10px;
+        padding: 0.5rem 0.5rem;
+    }
+
 }
