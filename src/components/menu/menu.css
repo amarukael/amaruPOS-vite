@@ -148,7 +148,7 @@
 
 .wrap__bill .totalbill {
   border-radius: 0.5rem;
-  height: 25rem;
+  height: 20rem;
   padding: 20px 15px;
   margin: 10px 10px;
   background-color: rgb(61, 61, 61);
@@ -235,6 +235,18 @@
     font-size: 10px;
   }
 
+  .bill__menu .wrap__bill {
+    height: 23rem;
+  }
+
+  .wrap__bill .order {
+    height: 10rem;
+  }
+
+  .wrap__bill .totalbill {
+    height: 15rem;
+  }
+
   .itembill {
     padding: 5px 5px;
     margin: 5px 10px;
@@ -253,5 +265,9 @@
   }
   .menu .menu__items {
     height: 11rem;
+  }
+
+  .bill__menu .wrap__bill {
+    height: 20rem;
   }
 }
