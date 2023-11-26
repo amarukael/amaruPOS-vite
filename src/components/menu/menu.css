@@ -271,3 +271,13 @@
     height: 20rem;
   }
 }
+
+@media only screen and (max-width: 850px) and (max-height: 350px) and (orientation: landscape){
+  .menu .menu__items {
+    height: 8rem;
+  }
+
+  .bill__menu .wrap__bill {
+    height: 17.5rem;
+  }
+}
