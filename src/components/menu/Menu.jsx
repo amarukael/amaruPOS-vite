@@ -5,12 +5,16 @@ import Items from "./Item";
 import ItemBill from "./ItemBill";
 import data from "../../assets/data.json";
 import GeneratePDF from "./GeneratePDF";
+import { FaPencilAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import { darkAlert } from '../other/darkAlert';
 
 const Menu = () => {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [billItems, setBillItems] = useState([]);
+  const [name, setName] = useState("Nama Pelanggan");
 
   useEffect(() => {
     if (selectedCategory) {
@@ -85,6 +89,24 @@ const Menu = () => {
     return total * 0.1;
   };
 
+  const handleEditClick = async () => {
+    const { value: newName } = await darkAlert({
+      title: "Edit Nama Pelanggan",
+      input: "text",
+      inputValue: name,
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) {
+          return "Anda harus memasukkan nama!";
+        }
+      },
+    });
+
+    if (newName) {
+      setName(newName);
+    }
+  };
+
   return (
     <>
       <div className="menu">
@@ -126,60 +148,74 @@ const Menu = () => {
         </div>
       </div>
       <div className="bill__menu">
-          <div className="order">
-            {billItems
-              .sort((a, b) => b.timestamp - a.timestamp)
-              .map((item, index) => (
-                <ItemBill
-                  key={index}
-                  nameItem={item.name}
-                  priceItem={item.price}
-                  count={item.count}
-                />
-              ))}
-          </div>
-          <div className="totalbill">
-            <div className="calculate">
-              <div className="subtotal">
-                <p>Subtotal:</p>
-                <p>
-                  {calculateTotal().toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                  }).replace(",00", "")}
-                </p>
-              </div>
-              <div className="subtotal">
-                <p>Tax (10%):</p>
-                <p>
-                  {calculateTax(calculateTotal()).toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                  }).replace(",00", "")}
-                </p>
-              </div>
-              <div className="dashed-line"></div>
-              <div className="subtotal">
-                <h3>Total:</h3>
-                <h3>
-                  {(
-                    calculateTotal() + calculateTax(calculateTotal())
-                  ).toLocaleString("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                  }).replace(",00", "")}
-                </h3>
-              </div>
-            </div>
-            <div>
-              <GeneratePDF
-                billItems={billItems}
-                calculateTotal={calculateTotal}
-                calculateTax={calculateTax}
-              />
-            </div>
+        <div>
+          <h3>Nama Pelanggan :</h3>
+          <div className="customer__name">
+            <span>{name}</span>
+            <button onClick={handleEditClick}>
+              <FaPencilAlt />
+            </button>
           </div>
         </div>
+        <div className="order">
+          {billItems
+            .sort((a, b) => b.timestamp - a.timestamp)
+            .map((item, index) => (
+              <ItemBill
+                key={index}
+                nameItem={item.name}
+                priceItem={item.price}
+                count={item.count}
+              />
+            ))}
+        </div>
+        <div className="totalbill">
+          <div className="calculate">
+            <div className="subtotal">
+              <p>Subtotal:</p>
+              <p>
+                {calculateTotal()
+                  .toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })
+                  .replace(",00", "")}
+              </p>
+            </div>
+            <div className="subtotal">
+              <p>Tax (10%):</p>
+              <p>
+                {calculateTax(calculateTotal())
+                  .toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })
+                  .replace(",00", "")}
+              </p>
+            </div>
+            <div className="dashed-line"></div>
+            <div className="subtotal">
+              <h3>Total:</h3>
+              <h3>
+                {(calculateTotal() + calculateTax(calculateTotal()))
+                  .toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })
+                  .replace(",00", "")}
+              </h3>
+            </div>
+          </div>
+          <div>
+            <GeneratePDF
+              billItems={billItems}
+              calculateTotal={calculateTotal}
+              calculateTax={calculateTax}
+              customerName={name}
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

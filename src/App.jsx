@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavSide from "./components/navside/NavSide";
 import "./App.css";
 import Menu from "./components/menu/Menu";
+import Swal from 'sweetalert2';
 
 export default function App() {
   const [isLandscape, setIsLandscape] = useState(
@@ -21,6 +22,23 @@ export default function App() {
       window.removeEventListener("resize", checkOrientation);
     };
   }, []);
+
+  useEffect(() => {
+    if (isMobile || !isLandscape) {
+      Swal.fire({
+        title: 'Peringatan!',
+        text: 'Maaf, website ini tidak dapat dibuka di perangkat mobile atau dalam mode potrait.',
+        icon: 'warning',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: true,
+        confirmButtonText: 'Refresh',
+        preConfirm: () => {
+          window.location.reload();
+        }
+      });
+    }
+  }, [isMobile, isLandscape]);
 
   return (
     <>

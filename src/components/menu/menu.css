@@ -75,7 +75,7 @@
 }
 
 .bill__menu {
-  height: 95%;
+  height: 100%;
   width: 20%;
   margin: 1rem 1rem;
   margin-bottom: 0 !important;
@@ -83,8 +83,13 @@
   flex-direction: column;
 }
 
+.bill__menu .customer__name{
+  display: flex;
+  justify-content: space-between;
+}
+
 .bill__menu .order{
-  max-height: 65%;
+  max-height: 50%;
   overflow: auto;
 }
 
@@ -119,14 +124,14 @@
   margin-top: auto;
   background-color: rgb(61, 61, 61);
   padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 30%;
 }
 
 .totalbill .calculate{
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .calculate .subtotal {

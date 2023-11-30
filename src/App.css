@@ -13,3 +13,8 @@ body{
   width: 100vw; /* Lebar penuh viewport */
   overflow: hidden; /* Mencegah pengguliran */
 }
+
+.dark-mode {
+  color: #fff;
+  background-color: #333;
+}
