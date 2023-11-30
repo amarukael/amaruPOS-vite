@@ -4,7 +4,7 @@ import { FaCoffee } from "react-icons/fa";
 import Items from "./Item";
 import ItemBill from "./ItemBill";
 import data from "../../assets/data.json";
-import GeneratePDF from './GeneratePDF';
+import GeneratePDF from "./GeneratePDF";
 
 const Menu = () => {
   const [items, setItems] = useState([]);
@@ -126,9 +126,6 @@ const Menu = () => {
         </div>
       </div>
       <div className="bill__menu">
-        <br />
-        <br />
-        <div className="wrap__bill">
           <div className="order">
             {billItems
               .sort((a, b) => b.timestamp - a.timestamp)
@@ -149,7 +146,7 @@ const Menu = () => {
                   {calculateTotal().toLocaleString("id-ID", {
                     style: "currency",
                     currency: "IDR",
-                  })}
+                  }).replace(",00", "")}
                 </p>
               </div>
               <div className="subtotal">
@@ -158,10 +155,10 @@ const Menu = () => {
                   {calculateTax(calculateTotal()).toLocaleString("id-ID", {
                     style: "currency",
                     currency: "IDR",
-                  })}
+                  }).replace(",00", "")}
                 </p>
               </div>
-              <div class="dashed-line"></div>
+              <div className="dashed-line"></div>
               <div className="subtotal">
                 <h3>Total:</h3>
                 <h3>
@@ -170,7 +167,7 @@ const Menu = () => {
                   ).toLocaleString("id-ID", {
                     style: "currency",
                     currency: "IDR",
-                  })}
+                  }).replace(",00", "")}
                 </h3>
               </div>
             </div>
@@ -183,7 +180,6 @@ const Menu = () => {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 };

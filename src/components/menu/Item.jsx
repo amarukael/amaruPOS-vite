@@ -1,23 +1,34 @@
 import "./menu.css";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import React from 'react';
+import React from "react";
 
-const Items = ({ nameItem, priceItem, count, incrementCount, decrementCount }) => {
+const Items = ({
+  nameItem,
+  priceItem,
+  count,
+  incrementCount,
+  decrementCount,
+}) => {
   return (
     <div className="items__item">
       <div className="item__content">
+        <h3>{nameItem}</h3>
         <div>
-          <h3>{nameItem}</h3>
-          <span>{priceItem.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</span>
-        </div>
-        <div className="counter">
+          <span>
+            {priceItem.toLocaleString("id-ID", {
+              style: "currency",
+              currency: "IDR",
+            }).replace(",00", "")}
+          </span>
+          <div className="counter">
             <i onClick={decrementCount}>
               <AiOutlineMinus />
             </i>
-          <span>{count}</span>
+            <span>{count}</span>
             <i onClick={incrementCount}>
               <AiOutlinePlus />
             </i>
+          </div>
         </div>
       </div>
     </div>
