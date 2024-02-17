@@ -5,7 +5,7 @@ function NavSide() {
   return (
     <nav className="navside">
       <div className="nav">
-        <h2>CosyPOS</h2>
+        <h2>AmaruPOS</h2>
         <ul>
           <li>Reservation</li>
           <li>Table Services</li>
