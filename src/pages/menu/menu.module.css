@@ -1,6 +1,15 @@
+.menu__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
+  width: 85vw;
+}
+
 .menu {
   height: 100%;
-  width: 60%;
+  width: 63vw;
 }
 
 .searchbar {
@@ -12,6 +21,7 @@
 .menu__category {
   display: flex;
   overflow: auto;
+  scrollbar-width: none;
 }
 
 .category__item {
@@ -33,10 +43,9 @@
 }
 
 .menu__items {
-  width: 100%;
   overflow: auto;
-  height: fit-content;
-  max-height: 65%;
+  scrollbar-width: none;
+  max-height: 55vh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -76,8 +85,8 @@
 }
 
 .bill__menu {
-  height: 100%;
-  width: 20%;
+  height: 95vh;
+  min-width: 20vw;
   margin: 1rem 1rem;
   margin-bottom: 0 !important;
   display: flex;
@@ -93,6 +102,7 @@
 .order {
   max-height: 50%;
   overflow: auto;
+  scrollbar-width: none;
 }
 
 .itembill {

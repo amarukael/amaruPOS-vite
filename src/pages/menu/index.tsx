@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./menu.module.css";
-import { FaCoffee, FaPencilAlt } from "react-icons/fa";
 import data from "./data.json";
-import Items from "@/components/items/Items";
-import ItemBill from "@/components/itemsbill/ItemsBill";
-
+import Layout from "@/components/layout/Layout";
+import CategoryList from "./CategoryList";
+import ItemList from "./ItemList";
+import Bill from "./Bill";
 
 interface MenuItem {
     name: string;
@@ -102,111 +102,36 @@ const Menu: React.FC = () => {
             alert("Anda harus memasukkan nama!");
         }
     };
+
     return (
-        <>
-            <div className={styles.menu}>
-                <input
-                    className={styles.searchbar}
-                    type="text"
-                    placeholder="🔍 Search.."
+        <Layout>
+            <div className={styles.menu__container}>
+                <div className={styles.menu}>
+                    <input
+                        className={styles.searchbar}
+                        type="text"
+                        placeholder="🔍 Search.."
+                    />
+                    <CategoryList
+                        categories={Object.keys(data)}
+                        onSelectCategory={setSelectedCategory}
+                    />
+                    <hr className={styles.line} />
+                    <ItemList
+                        items={items}
+                        onIncrement={incrementCount}
+                        onDecrement={decrementCount}
+                    />
+                </div>
+                <Bill
+                    billItems={billItems}
+                    total={calculateTotal()}
+                    tax={calculateTax(calculateTotal())}
+                    customerName={name}
+                    onEditCustomerName={handleEditClick}
                 />
-                <div className={styles.menu__category}>
-                    {Object.keys(data).map((category, index) => (
-                        <div
-                            className={styles.category__item}
-                            key={index}
-                            onClick={() => setSelectedCategory(category)}
-                        >
-                            <div className={styles.item__content}>
-                                <span className={styles.category__icon}>
-                                    <FaCoffee />
-                                </span>
-                                <div>
-                                    <h3>{category}</h3>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <hr className={styles.line} />
-                <div className={styles.menu__items}>
-                    {items.map((item, index) => (
-                        <Items
-                            key={index}
-                            nameItem={item.name}
-                            priceItem={item.price}
-                            count={item.count}
-                            incrementCount={() => incrementCount(index)}
-                            decrementCount={() => decrementCount(index)}
-                        />
-                    ))}
-                </div>
             </div>
-            <div className={styles.bill__menu}>
-                <div>
-                    <h3>Nama Pelanggan :</h3>
-                    <div className={styles.customer__name}>
-                        <span>{name}</span>
-                        <button onClick={handleEditClick}>
-                            <FaPencilAlt />
-                        </button>
-                    </div>
-                </div>
-                <div className={styles.order}>
-                    {billItems
-                        .sort((a, b) => b.timestamp - a.timestamp)
-                        .map((item, index) => (
-                            <ItemBill
-                                key={index}
-                                nameItem={item.name}
-                                priceItem={item.price}
-                                count={item.count}
-                            />
-                        ))}
-                </div>
-                <div className={styles.totalbill}>
-                    <div className={styles.calculate}>
-                        <div className={styles.subtotal}>
-                            <p>Subtotal:</p>
-                            <p>
-                                {calculateTotal()
-                                    .toLocaleString("id-ID", {
-                                        style: "currency",
-                                        currency: "IDR",
-                                    })
-                                    .replace(",00", "")}
-                            </p>
-                        </div>
-                        <div className={styles.subtotal}>
-                            <p>Tax (10%):</p>
-                            <p>
-                                {calculateTax(calculateTotal())
-                                    .toLocaleString("id-ID", {
-                                        style: "currency",
-                                        currency: "IDR",
-                                    })
-                                    .replace(",00", "")}
-                            </p>
-                        </div>
-                        <div className={styles.dashed_line}></div>
-                        <div className={styles.subtotal}>
-                            <h3>Total:</h3>
-                            <h3>
-                                {(calculateTotal() + calculateTax(calculateTotal()))
-                                    .toLocaleString("id-ID", {
-                                        style: "currency",
-                                        currency: "IDR",
-                                    })
-                                    .replace(",00", "")}
-                            </h3>
-                        </div>
-                    </div>
-                    <div>
-                        <button>Checkout</button>
-                    </div>
-                </div>
-            </div>
-        </>
+        </Layout>
     );
 };
 
