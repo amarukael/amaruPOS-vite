@@ -21,7 +21,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, onSelectCategor
                             <FaCoffee />
                         </span>
                         <div>
-                            <h3>{category}</h3>
+                            {category}
                         </div>
                     </div>
                 </div>

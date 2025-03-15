@@ -20,7 +20,7 @@ const Items: React.FC<ItemsProps> = ({
     return (
         <div className={styles.items__item}>
             <div className={styles.item__content}>
-                <h3>{nameItem}</h3>
+                <span>{nameItem}</span>
                 <div>
                     <span>
                         {priceItem.toLocaleString("id-ID", {

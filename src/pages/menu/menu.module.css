@@ -27,8 +27,8 @@
 .category__item {
   box-sizing: border-box;
   flex-shrink: 0;
-  width: 10rem !important;
-  height: 10rem !important;
+  width: 6rem !important;
+  height: 6rem !important;
   padding: 1rem;
   background-color: grey;
   border-radius: 1rem;
@@ -45,7 +45,7 @@
 .menu__items {
   overflow: auto;
   scrollbar-width: none;
-  max-height: 55vh;
+  max-height: 45svh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -55,8 +55,8 @@
   border: 1px solid gray;
   box-sizing: border-box;
   flex-shrink: 0;
-  width: 10rem !important;
-  height: 10rem !important;
+  width: 6rem !important;
+  height: 6rem !important;
   padding: 1rem;
   border-radius: 1rem;
   margin: 0.5rem;
