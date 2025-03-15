@@ -1,0 +1,158 @@
+.menu {
+  height: 100%;
+  width: 60%;
+}
+
+.searchbar {
+  margin: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+}
+
+.menu__category {
+  display: flex;
+  overflow: auto;
+}
+
+.category__item {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 10rem !important;
+  height: 10rem !important;
+  padding: 1rem;
+  background-color: grey;
+  border-radius: 1rem;
+  margin: 1rem 0.5rem;
+}
+
+.item__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu__items {
+  width: 100%;
+  overflow: auto;
+  height: fit-content;
+  max-height: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.items__item {
+  border: 1px solid gray;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 10rem !important;
+  height: 10rem !important;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 0.5rem;
+}
+
+.counter {
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.counter i {
+  border-radius: 5px;
+  padding: 2px 5px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.counter i:hover {
+  background-color: grey;
+  color: black;
+}
+
+.counter span {
+  margin: 0 5px;
+}
+
+.bill__menu {
+  height: 100%;
+  width: 20%;
+  margin: 1rem 1rem;
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.customer__name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order {
+  max-height: 50%;
+  overflow: auto;
+}
+
+.itembill {
+  background-color: rgb(61, 61, 61);
+  padding: 10px 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.nametotal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.total {
+  background-color: white;
+  color: black;
+  border-radius: 5rem;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.totalbill {
+  margin-top: auto;
+  background-color: rgb(61, 61, 61);
+  padding: 20px 0;
+  height: 30%;
+}
+
+.calculate {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashed-line {
+  margin: 15px 0px;
+  border-top: 2px dashed grey;
+}
+
+.place_order {
+  background-color: grey;
+  width: auto;
+  border-radius: 1rem;
+  text-align: center;
+  margin: 0 15px;
+  padding: 5px 0px;
+  cursor: pointer;
+}

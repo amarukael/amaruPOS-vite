@@ -1,0 +1,39 @@
+.items__item {
+  border: 1px solid gray;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 10rem !important;
+  height: 10rem !important;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 0.5rem;
+}
+
+.item__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.counter {
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.counter i {
+  border-radius: 5px;
+  padding: 2px 5px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.counter i:hover {
+  background-color: grey;
+  color: black;
+}
+
+.counter span {
+  margin: 0 5px;
+}
